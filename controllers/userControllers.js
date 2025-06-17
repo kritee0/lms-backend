@@ -47,16 +47,26 @@ export const loginUser = async (req, res) => {
     const isPasswordMatched = await foundUser.isPasswordValid(reqBody.password);
 
     if (isPasswordMatched) {
+      const token = generateToken({ _id: foundUser?._id });
+      if (!token) {
+        res.json({
+          success: false,
+          message: "something went wrong",
+        });
+      }
+
       const userData = {
         name: foundUser.name,
         email: foundUser.email,
         address: foundUser.address,
         phoneNumber: foundUser.phoneNumber,
+        token: token,
       };
 
       return res.json({
         success: true,
         data: userData,
+        token,
         message: `Welcome back ${foundUser.name}`,
       });
     }
