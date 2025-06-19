@@ -2,12 +2,29 @@ import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
 const userSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  password: String,
-  phoneNumber: String,
+  name: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    uniques: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  phoneNumber: {
+    type: String,
+    require: true,
+  },
   address: String,
-  role: String,
+  role: {
+    type: String,
+    enum: ["Admin", "staff", "member"],
+    default: "member",
+  },
 });
 
 userSchema.method("isPasswordValid", async function (password) {

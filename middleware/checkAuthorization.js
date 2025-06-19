@@ -27,7 +27,7 @@ export const checkAuthorization = async (req, res, next) => {
       });
     }
     req.user = user;
-    console.log(user);
+    //console.log(user);
     next();
   } catch (error) {
     console.log(error);
