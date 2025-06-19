@@ -12,7 +12,7 @@ const bookRouter = express.Router();
 bookRouter
   .route("/")
   .get(checkAuthorization, getBooksController)
-  .post(createBookController);
+  .post(checkAuthorization, createBookController);
 
 bookRouter.route("/:id").put(updateBookController).delete(deleteBookController);
 

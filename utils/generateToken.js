@@ -21,6 +21,6 @@ export const decodeJWT = async (token) => {
     return foundUser;
   } catch (error) {
     console.log(error);
-    console.log(error);
+    return;
   }
 };

@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
   password: String,
   phoneNumber: String,
   address: String,
+  role: String,
 });
 
 userSchema.method("isPasswordValid", async function (password) {

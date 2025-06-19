@@ -5,6 +5,12 @@ import { jwtsecretKey } from "../utils/generateToken.js";
 export const checkAuthorization = async (req, res, next) => {
   try {
     const token = req?.body?.token;
+    if (!token) {
+      return req.json({
+        success: false,
+        message: "looks  like you have been logged out",
+      });
+    }
     const decoded = await jwt.verify(token, jwtsecretKey);
     console.log(decoded);
     if (!decoded._id) {
